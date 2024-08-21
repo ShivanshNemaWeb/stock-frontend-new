@@ -33,9 +33,9 @@ export default function MoneyTransaction() {
   return (
    <>
    {
-    transections.slice(0, 5).map((transection)=>(
+    transections.slice(0, 5).map((transection,i)=>(
       
-      <article className='w-full flex justify-between mt-2 hover:bg-lightColor/5 p-2 rounded-lg cursor-pointer'>
+      <article key={i} className='w-full flex justify-between mt-2 hover:bg-lightColor/5 p-2 rounded-lg cursor-pointer'>
       <div className='flex justify-start items-center '>
         <div className="rounded-[4px] overflow-hidden">
           <Image src='/Icon/trans.svg' width={40} height={40} alt="ImageAvatar" />
