@@ -34,7 +34,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { DataTableViewOptions } from "./column-toggle"
 import { Card, CardContent } from "@/components/ui/card"
-import CommandMenu from "@/components/ui/command-popup"
+import CommandMenu from "@/components/ui/command-menu"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
