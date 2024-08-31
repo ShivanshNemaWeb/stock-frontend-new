@@ -66,6 +66,10 @@ export default function CommandMenu() {
                     confirmButtonColor: '#3085d6',
                     timer: 2000,
                     timerProgressBar: true,
+                    willClose: () => {
+                        // Refresh the page when the alert closes
+                        window.location.reload();
+                      },
                 });
             } else {
                 Swal.fire({

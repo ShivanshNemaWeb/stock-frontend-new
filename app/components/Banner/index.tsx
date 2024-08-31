@@ -2,10 +2,11 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import ModalVideo from 'react-modal-video';
-
-
+import Cookies from 'js-cookie';
+import Link from 'next/link';
 const Banner = () => {
     const [isOpen, setOpen] = useState(false)
+    const token = Cookies.get('token');
 
     return (
         <div className='bg-image relative' id="home-section">
@@ -24,7 +25,17 @@ const Banner = () => {
                             </h1>
                             <p className='text-white md:text-lg font-normal mb-10 md:text-start text-center'>Discover [Your Website Name], where expert brokers maximize your investments. Start today for smarter stock strategies and robust financial gains.</p>
                             <div className='flex align-middle justify-center md:justify-start'>
-                                <button className='text-xl font-semibold text-white py-4 px-6 lg:px-12 navbutton mr-6'>Get Started</button>
+                                {
+                                    token?(<>
+                                    <Link href={'/dashboard'}>
+                                    <button className='text-xl font-semibold text-white py-4 px-6 lg:px-12 navbutton mr-6'>Get Started</button>
+                                    </Link>
+                                    </>):(<>
+                                    <Link href={'/login'}>
+                                    <button className='text-xl font-semibold text-white py-4 px-6 lg:px-12 navbutton mr-6'>Get Started</button>
+                                    </Link>
+                                    </>)
+                                }
                                 <button onClick={() => setOpen(true)} className='bg-transparent flex justify-center items-center text-white'><Image src={'/images/Banner/playbutton.svg'} alt="button-image" className='mr-3' width={47} height={47} />How it work</button>
                             </div>
                         </div>

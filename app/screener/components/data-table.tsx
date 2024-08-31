@@ -34,7 +34,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { DataTableViewOptions } from "./column-toggle"
 import { Card, CardContent } from "@/components/ui/card"
-
+import CommandMenu from "@/components/ui/command-popup"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
@@ -92,7 +92,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className="w-full"  >
       <div className="flex items-center pb-4" >
-        <Select onValueChange={(value) => handleSelect(value)}>
+        {/* <Select onValueChange={(value) => handleSelect(value)}>
          
             <SelectTrigger className="w-[180px]">
              
@@ -124,7 +124,8 @@ export function DataTable<TData, TValue>({
             }
             className="max-w-sm bg-background caret-blue-500"
           />
-        </div>
+        </div> */}
+        <CommandMenu/>
         <DataTableViewOptions table={table} />
       </div>
       <Card>

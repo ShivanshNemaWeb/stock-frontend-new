@@ -111,14 +111,16 @@ export default async function Action({ ticker, amount }: { ticker: string, amoun
         Buy
       </button>
 
-      {
-        hasStock&& <button
+       {/* disbaled if hasStock is false*/}
+
+      <button
         style={{ backgroundColor: "red", padding: "5px", width: "100px", borderRadius: "5px",marginLeft:"5px" }}
         onClick={() => setSellPopup(true)} // Open popup on click
+        disabled={!hasStock}
       >
         Sell
       </button>
-      }
+     
 
       {/* Modal Popup for Buy */}
       {showPopup && (

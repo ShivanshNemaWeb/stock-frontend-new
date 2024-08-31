@@ -19,7 +19,7 @@ export default function Navigation() {
           <div>{pathname !== "/" && <GoBack />}</div>
           <div className="flex flex-row items-center gap-2">
            
-            <CommandMenu />
+            {/* <CommandMenu /> */}
 
             {/* <ThemeToggle /> */}
           </div>

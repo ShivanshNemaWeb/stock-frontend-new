@@ -29,12 +29,12 @@ const Actions = () => {
              setIsUser(false);
         }
     }
+    const token = Cookies.get('token');
     useEffect(() => {
-      const token = Cookies.get('token');
       if(token){
         getUser(token);
       }
-    }, [])
+    }, [token])
     return(
    <>
     {
