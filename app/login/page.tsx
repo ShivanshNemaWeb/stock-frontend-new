@@ -102,7 +102,7 @@ const Login = () => {
                 <div className="relative">
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white dark:text-black"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                   >
                     Password
                   </label>
