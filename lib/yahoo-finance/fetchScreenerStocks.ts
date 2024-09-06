@@ -16,7 +16,7 @@ export async function fetchScreenerStocks(query: string, count?: number) {
   const queryOptions: ScreenerOptions = {
     scrIds: query as PredefinedScreenerModules,
     count: count ? count : ITEMS_PER_PAGE,
-    region: "IN",
+    region: "INDIA",
     lang: "en-US",
   }
 

@@ -3,9 +3,13 @@ import Image from "next/image";
 import { useState  } from "react";
 import Link from 'next/link';
 
+import { usePathname } from "next/navigation";
 
 
 const AsideBar = () => {
+  const pathname = usePathname(); // Get the pathname of the current URL
+  const lastSegment = pathname.split("/").pop(); // Extract the last part of the URL
+
   const [dashboard, setDashboard] = useState(true);
   const [transactions, setTransactions] = useState(false);
   const [wallet, setWallet] = useState(false);
@@ -100,40 +104,40 @@ const links = {
            
           {/*  dash */}
           <Link href='/dashboard'>
-            <li id="dashoard"  onClick={handlerDash}  className={`${ dashboard ?' cursor-pointer  w-full sm:w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center' : 'cursor-pointer w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center'}`}>
+            <li id="dashoard"  onClick={handlerDash}  className={`${ lastSegment==='dashboard' ?'bg-selectedColor/10 cursor-pointer  w-full sm:w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center' : 'cursor-pointer w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center'}`}>
                 <Image className=" " src={links.dashboard.icon} width={'18'} height={'18'} alt={''} />
                 <h4 className="ml-2 sm:flex hidden"> {links.dashboard.Name}</h4>
-               { dashboard  ?   <span className=" absolute w-[5px] h-4 rounded-l  right-0 "></span> : ''}
+               { lastSegment==='dashboard'  ?   <span className=" absolute w-[5px] h-4 rounded-l bg-[#FFC01E] right-0 "></span> : ''}
             </li> 
             </Link>
              {/* wallet */}
              <Link href='/wallet'>
-            <li id="handlerWalet"  onClick={handlerWalet} className={`${ wallet ?'bg-selectedColor/10 cursor-pointer text-selectedColor w-full sm:w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center' : 'cursor-pointer w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center'}`}>
+            <li id="handlerWalet"  onClick={handlerWalet} className={`${ lastSegment==='wallet' ?'bg-selectedColor/10 cursor-pointer text-selectedColor w-full sm:w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center' : 'cursor-pointer w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center'}`}>
                 <Image className="selectedColor " src={links.wallet.icon} width={'18'} height={'18'} alt={''} />
                 <h4 className="ml-2 sm:flex hidden"> {links.wallet.Name}</h4>
-                { wallet ?   <span className=" absolute w-[5px] h-4 rounded-l bg-[#FFC01E] right-0 "></span> : ''}
+                { lastSegment==='wallet' ?   <span className=" absolute w-[5px] h-4 rounded-l bg-[#FFC01E] right-0 "></span> : ''}
             </li>
             </Link>
             {/* transactions */}
             <Link href="/transections">
-            <li id="handlerTrans"  onClick={handlerTrans} className={`${ transactions ?'bg-selectedColor/10 cursor-pointer text-selectedColor w-full sm:w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center' : 'cursor-pointer w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center'}`}>
-                <Image className="selectedColor " src={links.transactions.icon} width={'10'} height={'10'} alt={''} />
+            <li id="handlerTrans"  onClick={handlerTrans} className={`${ lastSegment==='transections' ?'bg-selectedColor/10 cursor-pointer text-selectedColor w-full sm:w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center' : 'cursor-pointer w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center'}`}>
+            <img width={20} height={20} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABFUlEQVR4nO1Vu04DMRA01KEBQtLAN0BDviKR+AUkIL9ExYcghZeooigSIjRQ+WbWdk7JFyA5snInrkhQ7s7pMtIWW3hmZ3dtK7VDVZDyTorfJAB5Ky0QDpUQeI3giMcArkmZZcSP3vs9FRtam0uAv8vK0a1MBEgfkPvVwenSBT9CniRyV1qAlPmmMwhtq+AAFyJyuypI/mQOBiEHcK5iIUlMpzCDXjRiY8wJyZu/LeKT936/MmGwv37v+aK1PqxVMcCv4k0Ne0/ygeRVrcoLDs7yYQJ8ds41VGwAOCXlO38O0jQ9iC7inGvn7QI4rN37f0QmmZMRgKPoItbaFsDPbPBjEWlu2QmHahuw1rbCZxTlD9ghYAEBz7YeginEzAAAAABJRU5ErkJggg=="/>
                 
                 <h4 className="ml-2 sm:flex hidden"> {links.transactions.Name}</h4>
-                { transactions ?   <span className=" absolute w-[5px] h-4 rounded-l  bg-[#FFC01E] right-0 "></span> : ''}
+                { lastSegment==='transections' ?   <span className=" absolute w-[5px] h-4 rounded-l  bg-[#FFC01E] right-0 "></span> : ''}
             </li>
             </Link>
             <Link href="/portfolio">
-            <li id="Portfolio"  onClick={handlerAnalytics} className={`${ analytic ?'bg-selectedColor/10 cursor-pointer text-selectedColor w-full sm:w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center' : 'cursor-pointer w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center'}`}>
+            <li id="Portfolio"  onClick={handlerAnalytics} className={`${ lastSegment==='portfolio' ?'bg-selectedColor/10 cursor-pointer text-selectedColor w-full sm:w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center' : 'cursor-pointer w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center'}`}>
                 <Image className="selectedColor " src={links.portfolio.icon} width={'18'} height={'18'} alt={''} />
                 <h4 className="ml-2 sm:flex hidden"> {links.portfolio.Name}</h4>
-                { analytic ?   <span className=" absolute w-[5px] h-4 rounded-l bg-[#FFC01E] right-0 "></span> : ''}
+                { lastSegment==='portfolio' ?   <span className=" absolute w-[5px] h-4 rounded-l bg-[#FFC01E] right-0 "></span> : ''}
             </li>
             </Link>
             <Link href="/screener">
-            <li id="stock" className={`${ analytic ?'bg-selectedColor/10 cursor-pointer text-selectedColor w-full sm:w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center' : 'cursor-pointer w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center'}`}>
+            <li id="stock" className={`${ lastSegment==='screener' ?'bg-selectedColor/10 cursor-pointer text-selectedColor w-full sm:w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center' : 'cursor-pointer w-[10rem] mt-2 py-3 pl-4 hover: text-[12px]  text-left relative flex items-center'}`}>
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABRklEQVR4nO3Uvy5EQRTH8bVkJaLYShQElWqR6ESHKP23vILKE6ismhcQUSk1SrUXEA+g0CqIkEg+chlyrbn37opo+CWTW8yZ7+/cc85MqfQnhGHUsRnW7E8bjKTgr+unDXqwXGSAAfS2C69iIYCXwrceiavgDIfoaxXeh5UAnQmQpFxDkdgTb3rGTivwQawH+DQ6c2K7Angf3SgXwUexEeCT6GghoWvcYLEocCLVzFrT3h7u0Yicq+EylGk7Bi5j6r2JGXV+CoDHnFJd4aJ5oxKamMBX0Z8B+FAkuVMc4wFHzQfnAzwZx2oMnqjA4AC3OP8ypsnVx1xyoUo5kmGQ2t9KepjHSAePYw1jrRq0pdTjVs8zyEgkc9rSBl/eHXGDWCKfpy3m2IbBZmFcbL5/w6Be+OttlKiBO+ymgsYizft23L9KWXoBvfnA0bQAnXoAAAAASUVORK5CYII="/>                <h4 className="ml-2 sm:flex hidden"> {links.stocks.Name}</h4>
-                { analytic ?   <span className=" absolute w-[5px] h-4 rounded-l bg-[#FFC01E] right-0 "></span> : ''}
+                { lastSegment==='screener' ?   <span className=" absolute w-[5px] h-4 rounded-l bg-[#FFC01E] right-0 "></span> : ''}
             </li>
             </Link>
            

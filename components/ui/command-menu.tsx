@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import {
   Command,
   CommandDialog,
@@ -9,12 +9,10 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from "@/components/ui/command"
-import { Button } from "./button"
-import tickers from "@/data/tickers.json"
-import { useRouter } from "next/navigation"
+} from "@/components/ui/command";
+import { Button } from "./button";
+import tickers from "@/data/tickers.json";
+import { useRouter } from "next/navigation";
 
 const SUGGESTIONS = [
   { ticker: "TSLA", title: "Tesla Inc." },
@@ -23,23 +21,36 @@ const SUGGESTIONS = [
   { ticker: "MSFT", title: "Microsoft Corporation" },
   { ticker: "GOOGL", title: "Alphabet Inc." },
   { ticker: "AMZN", title: "Amazon.com Inc." },
-]
+];
+
+// Function to remove duplicates from the tickers array
+const uniqueTickers = (tickers: any[]) => {
+  const seen = new Set();
+  return tickers.filter((ticker) => {
+    const duplicate = seen.has(ticker.ticker);
+    seen.add(ticker.ticker);
+    return !duplicate;
+  });
+};
 
 export default function CommandMenu() {
-  const [open, setOpen] = useState(false)
-  const [search, setSearch] = useState("")
-  const router = useRouter()
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        setOpen((open) => !open)
+        e.preventDefault();
+        setOpen((open) => !open);
       }
-    }
-    document.addEventListener("keydown", down)
-    return () => document.removeEventListener("keydown", down)
-  }, [])
+    };
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
+
+  // Remove duplicates from the tickers array
+  const filteredTickers = uniqueTickers(tickers);
 
   return (
     <div>
@@ -57,7 +68,6 @@ export default function CommandMenu() {
         </p>
       </Button>
       <Command>
-
         <CommandDialog open={open} onOpenChange={setOpen}>
           <CommandInput
             placeholder="Search by symbols or companies..."
@@ -73,9 +83,9 @@ export default function CommandMenu() {
                     key={suggestion.ticker}
                     value={suggestion.ticker + "\n \n" + suggestion.title}
                     onSelect={() => {
-                      setOpen(false)
-                      setSearch("")
-                      router.push(`/stocks/${suggestion.ticker}`)
+                      setOpen(false);
+                      setSearch("");
+                      router.push(`/stocks/${suggestion.ticker}`);
                     }}
                   >
                     <p className="mr-2 font-semibold">{suggestion.ticker}</p>
@@ -86,12 +96,10 @@ export default function CommandMenu() {
                 ))}
 
               {search.length > 0 &&
-                tickers
+                filteredTickers
                   .filter(
                     (ticker) =>
-                      ticker.ticker
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
+                      ticker.ticker.toLowerCase().includes(search.toLowerCase()) ||
                       ticker.title.toLowerCase().includes(search.toLowerCase())
                   )
                   .slice(0, 10)
@@ -100,9 +108,9 @@ export default function CommandMenu() {
                       key={ticker.id}
                       value={ticker.ticker + "\n \n" + ticker.title}
                       onSelect={() => {
-                        setOpen(false)
-                        setSearch("")
-                        router.push(`/stocks/${ticker.ticker}`)
+                        setOpen(false);
+                        setSearch("");
+                        router.push(`/stocks/${ticker.ticker}`);
                       }}
                     >
                       <p className="mr-2 font-semibold">{ticker.ticker}</p>
@@ -114,8 +122,7 @@ export default function CommandMenu() {
             </CommandGroup>
           </CommandList>
         </CommandDialog>
-
       </Command>
     </div>
-  )
+  );
 }

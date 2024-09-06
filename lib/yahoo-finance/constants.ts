@@ -3,7 +3,7 @@ import type { Interval, Range } from "@/types/yahoo-finance"
 export const DEFAULT_TICKER = "AAPL"
 export const DEFAULT_RANGE = "1d"
 export const DEFAULT_INTERVAL = "1m"
-export const DEFAULT_SCREENER = "most_actives"
+export const DEFAULT_SCREENER = "day_losers"
 
 export const VALID_RANGES: Range[] = ["1d", "1w", "1m", "3m", "1y"]
 export const INTERVALS_FOR_RANGE: { [key in Range]: Interval[] } = {
