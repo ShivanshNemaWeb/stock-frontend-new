@@ -147,7 +147,7 @@ const Signup = () => {
                 <div className="relative">
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                    className="block mb-2 text-sm font-medium text-gray-900 text-black"
                   >
                     Password
                   </label>
