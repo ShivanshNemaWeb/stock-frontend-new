@@ -52,7 +52,7 @@ export default async function StockChart({
     <>
     <div style={{display:'flex', flexDirection:'column', width:'100%'}}>
     <div>
-    <Actions ticker={ticker} amount={quote.regularMarketPrice ? parseFloat(quote.regularMarketPrice.toFixed(2)) : 0}/>
+    <Actions ticker={decodeURIComponent(ticker)} amount={quote.regularMarketPrice ? parseFloat(quote.regularMarketPrice.toFixed(2)) : 0}/>
     </div>
     <div className="h-[27.5rem] w-full" >
       <div>
