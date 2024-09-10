@@ -49,7 +49,7 @@ export default function MoneyTransaction() {
       </div>
     
       {/* Determine the color and sign based on the description */}
-      {transection?.description?.toLowerCase().includes('withdraw') || transection?.description?.toLowerCase().includes('buy') ? (
+      {transection?.description?.toLowerCase().includes('withdraw') || transection?.description?.toLowerCase().includes('bought') || transection?.description?.toLowerCase().includes('short sold') ? (
         <h4 className="text-selectedColor" style={{color:"red"}}>- ₹ {transection?.amount}</h4>
       ) : (
         <h4 className="text-selectedColor" style={{color:"green"}}>+ ₹ {transection?.amount}</h4>

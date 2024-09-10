@@ -66,7 +66,7 @@ export default function Transections() {
                 {item.description}
               </TableCell>
               <TableCell align="right" sx={{ color: 'white' }}>{new Date(item?.date).toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour:'numeric',minute:'numeric' })}</TableCell>
-              {item?.description?.toLowerCase().includes('withdraw') || item?.description?.toLowerCase().includes('buy') ? (
+              {item?.description?.toLowerCase().includes('withdraw') || item?.description?.toLowerCase().includes('bought') || item?.description?.toLowerCase().includes('short sold') ? (
         <TableCell className="text-selectedColor" style={{color:"red"}}>- ₹ {item?.amount}</TableCell>
       ) : (
         <TableCell className="text-selectedColor" style={{color:"green"}}>+ ₹ {item?.amount}</TableCell>
