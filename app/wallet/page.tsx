@@ -16,6 +16,8 @@ const Wallet = () => {
   const [amount, setAmount] = useState("");
   const [loadingAdd, setLoadingAdd] = useState(false);
   const [loadingWithdraw, setLoadingWithdraw] = useState(false);
+  const [transactionId, setTransactionId] = useState("");
+  const [upiId, setUpiId] = useState("");
 
   const handleDeposit = async () => {
     const token = Cookies.get('token');
@@ -23,7 +25,7 @@ const Wallet = () => {
 
     try {
       setLoadingAdd(true); // Set loading state
-      const response = await axios.post(url, {amount: parseInt(amount)} , {
+      const response = await axios.post(url, {amount: parseInt(amount), transactionId} , {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -54,7 +56,7 @@ const Wallet = () => {
 
     try {
       setLoadingWithdraw(true); // Set loading state
-      const response = await axios.post(url, { amount: withdrawlAmount, upiId: "your-upi-id" }, { // Replace "your-upi-id" with actual UPID
+      const response = await axios.post(url, { amount: withdrawlAmount, upiId:upiId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.status === 200) {
@@ -127,12 +129,22 @@ const Wallet = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg sm:w-1/3 w-2/3">
             <h2 className="text-xl mb-4">Add to Wallet</h2>
+            <div style={{textAlign:'center', display:'flex', justifyContent:'center'}} >
+                <img src="./qr-code.jpg" alt={''} width={'60%'} className='m-5' />
+            </div>
             <input
               type="text"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="border p-2 rounded w-full mb-4"
               placeholder="Enter amount"
+            />
+            <input
+              type="text"
+              value={transactionId}
+              onChange={(e) => setTransactionId(e.target.value)}
+              className="border p-2 rounded w-full mb-4"
+              placeholder="Enter Transaction Id"
             />
             <div className="flex justify-end">
               <button
@@ -166,6 +178,13 @@ const Wallet = () => {
               onChange={(e) => setwithdrawlAmount(e.target.value)}
               className="border p-2 rounded w-full mb-4"
               placeholder="Enter amount"
+            />
+            <input
+              type="text"
+              value={upiId}
+              onChange={(e) => setUpiId(e.target.value)}
+              className="border p-2 rounded w-full mb-4"
+              placeholder="Enter UPI ID"
             />
             <div className="flex justify-end">
               <button
